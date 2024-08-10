@@ -1,7 +1,5 @@
 package com.myshop.order.command.domain;
 
-import com.myshop.common.model.Address;
-
 import javax.persistence.*;
 
 @Embeddable
