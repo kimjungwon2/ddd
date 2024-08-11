@@ -17,10 +17,14 @@ public class Order {
     private ShippingInfo shippingInfo;
 
     public void changeShippingInfo(ShippingInfo newShippingInfo){
-        if(!isShippingChangeable()){
-            throw new IllegalStateException("Can't change shipping in" + state);
+        verifyNotYetShipped();
+        setShippingInfo(newShippingInfo);
+    }
+
+    private void verifyNotYetShipped() {
+        if(state!=OrderState.PAYMENT_WAITING && state != OrderState.PREPARING){
+            throw new IllegalStateException("aleady shipped");
         }
-        this.shippingInfo = newShippingInfo;
     }
 
     private boolean isShippingChangeable(){
@@ -32,7 +36,8 @@ public class Order {
     }
 
     public void cancel(){
-
+        verifyNotYetShipped();
+        this.state = OrderState.CANCELED;
     }
 
     public void completePayment(){
