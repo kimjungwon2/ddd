@@ -4,36 +4,37 @@ import javax.persistence.*;
 
 @Embeddable
 public class ShippingInfo {
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "zipCode", column = @Column(name = "shipping_zip_code")),
-            @AttributeOverride(name = "address1", column = @Column(name = "shipping_addr1")),
-            @AttributeOverride(name = "address2", column = @Column(name = "shipping_addr2"))
-    })
-    private Address address;
-    @Column(name = "shipping_message")
-    private String message;
-    @Embedded
-    private Receiver receiver;
+    private String receiverName;
+    private String receiverPhoneNumber;
+    private String shippingAddress1;
+    private String shippingAddress2;
+    private String shippingZipcode;
 
-    public ShippingInfo() {
+    public ShippingInfo(String receiverName, String receiverPhoneNumber, String shippingAddress1, String shippingAddress2, String shippingZipcode) {
+        this.receiverName = receiverName;
+        this.receiverPhoneNumber = receiverPhoneNumber;
+        this.shippingAddress1 = shippingAddress1;
+        this.shippingAddress2 = shippingAddress2;
+        this.shippingZipcode = shippingZipcode;
     }
 
-    public ShippingInfo(Address address, String message, Receiver receiver) {
-        this.address = address;
-        this.message = message;
-        this.receiver = receiver;
+    public String getReceiverName() {
+        return receiverName;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getReceiverPhoneNumber() {
+        return receiverPhoneNumber;
     }
 
-    public String getMessage() {
-        return message;
+    public String getShippingAddress1() {
+        return shippingAddress1;
     }
 
-    public Receiver getReceiver() {
-        return receiver;
+    public String getShippingAddress2() {
+        return shippingAddress2;
+    }
+
+    public String getShippingZipcode() {
+        return shippingZipcode;
     }
 }

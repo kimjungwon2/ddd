@@ -8,8 +8,9 @@ public class Order {
     private List<OrderLine> orderLines;
     private Money totalAmounts;
 
-    public Order(List<OrderLine> orderLines) {
+    public Order(List<OrderLine> orderLines, ShippingInfo shippingInfo) {
         setOrderLines(orderLines);
+        setShippingInfo(shippingInfo);
     }
 
     private OrderState state;
@@ -56,6 +57,13 @@ public class Order {
                 .sum();
         this.totalAmounts = new Money(sum);
 
+    }
+
+
+    private void setShippingInfo(ShippingInfo shippingInfo) {
+        if(shippingInfo == null)
+            throw new IllegalArgumentException("no shippingInfo");
+        this.shippingInfo = shippingInfo;
     }
 
 }
