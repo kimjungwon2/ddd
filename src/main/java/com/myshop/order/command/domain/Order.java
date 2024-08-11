@@ -1,8 +1,6 @@
 package com.myshop.order.command.domain;
 
 
-
-
 public class Order {
     private OrderState state;
     private ShippingInfo shippingInfo;
@@ -17,4 +15,17 @@ public class Order {
     private boolean isShippingChangeable(){
         return state == OrderState.PAYMENT_WAITING || state == OrderState.PREPARING;
     }
+
+    public void changeShipped(){
+
+    }
+
+    public void cancel(){
+
+    }
+
+    public void completePayment(){
+
+    }
+
 }
