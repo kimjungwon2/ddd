@@ -2,9 +2,11 @@ package com.myshop.order.command.domain;
 
 
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
 
+    private String orderNumber;
     private List<OrderLine> orderLines;
     private Money totalAmounts;
 
@@ -71,4 +73,23 @@ public class Order {
         this.shippingInfo = shippingInfo;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) return true;
+        if(obj == null) return false;
+        if(obj.getClass()!=Order.class) return false;
+
+        Order order = (Order)obj;
+        if ( this.orderNumber == null) return false;
+
+        return this.orderNumber.equals(order.orderNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result =1;
+        result = prime * result + ((this.orderNumber == null) ? 0 : this.orderNumber.hashCode());
+        return result;
+    }
 }
