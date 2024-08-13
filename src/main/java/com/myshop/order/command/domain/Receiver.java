@@ -16,4 +16,15 @@ public class Receiver {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
+    public boolean equals(Object other){
+        if (other == null) return false;
+        if (this == other) return true;
+
+        if(! (other instanceof Receiver)) return false;
+        Receiver that = (Receiver) other;
+
+        return this.name.equals(that.name) &&
+                this.phoneNumber.equals(that.phoneNumber);
+    }
 }
