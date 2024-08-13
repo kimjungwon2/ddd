@@ -10,7 +10,8 @@ public class Order {
     private List<OrderLine> orderLines;
     private Money totalAmounts;
 
-    public Order(List<OrderLine> orderLines, ShippingInfo shippingInfo) {
+    public Order(Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo) {
+        setOrderer(orderer);
         setOrderLines(orderLines);
         setShippingInfo(shippingInfo);
     }
@@ -44,6 +45,11 @@ public class Order {
 
     public void completePayment(){
 
+    }
+
+    private void setOrderer(Orderer orderer){
+        if (orderer == null) throw new IllegalArgumentException("no orderer");
+        this.orderer = orderer;
     }
 
     private void setOrderLines(List<OrderLine> orderLines){
