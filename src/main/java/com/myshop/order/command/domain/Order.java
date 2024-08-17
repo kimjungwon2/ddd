@@ -1,14 +1,22 @@
 package com.myshop.order.command.domain;
 
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table("TBL_ORDER")
 public class Order {
 
     private String orderNumber;
     private List<OrderLine> orderLines;
     private Money totalAmounts;
+    private OrderNo number;
+    private Orderer orderer;
+    private OrderState state;
+    private ShippingInfo shippingInfo;
 
     public Order(Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo) {
         setOrderer(orderer);
@@ -16,8 +24,6 @@ public class Order {
         setShippingInfo(shippingInfo);
     }
 
-    private OrderState state;
-    private ShippingInfo shippingInfo;
 
     public void changeShippingInfo(ShippingInfo newShippingInfo){
         verifyNotYetShipped();
